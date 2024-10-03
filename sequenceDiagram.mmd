@@ -1,0 +1,14 @@
+sequenceDiagram
+    participant User
+    participant Discord Bot
+    participant FastAPI
+    participant Ollama LLM
+    participant External API
+    User->>Discord Bot: Enter discord LLM command & user query
+    Discord Bot->>FastAPI: Call /query endpoint
+    FastAPI->>Ollama LLM: Process user query
+    Ollama LLM->>External API: Tool call
+    External API-->>Ollama LLM: External API response
+    Ollama LLM-->>FastAPI: LLM response
+    FastAPI-->>Discord Bot: /query response
+    Discord Bot-->>User: Discord bot response
